@@ -100,4 +100,94 @@ public sealed class Wardrobe
     //
     //     return false;
     // }
+
+    public bool HasEmptyHanger(string typeOfClothing)
+    {
+        foreach (Hanger hanger in _hangers)
+        {
+            // Console.WriteLine(hanger.Clothes);
+            // foreach (Clothing clothing in hanger.Clothes)
+            // {
+            //     Console.WriteLine("  - Clothing: ID = {0}, Brand = {1}, Type = {2}", clothing.ID, clothing.Brand, clothing.Type);
+            // }
+            // if (hanger.GetType().Name == "SingleHanger" && hanger.Clothes.Count == 0 && typeOfClothing=="") 
+            switch (hanger.GetType().Name)
+            {
+                case "SingleHanger":
+                    if (hanger.Clothes.Count == 0 && typeOfClothing == "Shirt" ||
+                        hanger.Clothes.Count == 0 && typeOfClothing == "Blouse")
+                    {
+                        return true;
+                    }
+
+                    break;
+                case "DoubleHanger":
+                    foreach (DoubleHanger doubleHanger in _hangers)
+                    {
+                        switch (typeOfClothing)
+                        {
+                            case "Shirt":
+                                if (!doubleHanger.hasShirtOrBlouse)
+                                {
+                                    return true;
+                                }
+
+                                break;
+                            case "Blouse":
+                                if (!doubleHanger.hasShirtOrBlouse)
+                                {
+                                    return true;
+                                }
+
+                                break;
+                            case "Trousers":
+                                if (!doubleHanger.hasTrousersOrSkirt)
+                                {
+                                    return true;
+                                }
+
+                                break;
+                            case "Skirt":
+                                if (!doubleHanger.hasTrousersOrSkirt)
+                                {
+                                    return true;
+                                }
+
+                                break;
+                            default:
+                                break;
+
+                        }
+                    }
+
+                    break;
+
+            }
+        }
+        
+        return false;
+    }
+    
+    public bool HasEmptyHanger2(string type)
+    {
+        foreach (Hanger hanger in _hangers)
+        {
+            if (hanger.Clothes.Count == 0 && hanger.GetType().Name.StartsWith(type))
+            {
+                return true;
+            }
+
+            if (type == "Trousers" || type == "Skirt")
+            {
+                if (hanger is DoubleHanger DoubleHanger && !DoubleHanger.hasTrousersOrSkirt)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+        
 }

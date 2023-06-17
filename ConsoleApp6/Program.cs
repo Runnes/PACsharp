@@ -39,5 +39,8 @@ Wardrobe.Instance.GetClothing(2); //TO USUWA/wyciaga z szafy - najwazniejsza lin
 Wardrobe.Instance.Print();
 Wardrobe.Instance.HowManyHangers();
 
-Console.WriteLine(Wardrobe.Instance.HasEmptyHanger("Double"));
-Console.WriteLine(Wardrobe.Instance.HasEmptyHanger("Trousers"));
+// Console.WriteLine(Wardrobe.Instance.HasEmptyHanger("Double"));
+// Console.WriteLine(Wardrobe.Instance.HasEmptyHanger("Trousers"));
+
+// Wardrobe.Instance.HasEmptyHanger("Trousers");
+Console.WriteLine(Wardrobe.Instance.HasEmptyHanger2("Trousers"));
